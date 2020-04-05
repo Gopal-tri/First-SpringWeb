@@ -5,40 +5,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<title>Todos for ${name}</title>
+
+<title>Todo's${name}</title>
 </head>
 <body>
 
 	<div>
+		<jsp:include page="/include/headscript.jsp"></jsp:include>
 		<jsp:include page="/include/menu.jsp"></jsp:include>
 	</div>
 	<H1>Your Todo's</H1>
 	${todos}
 
-	<table>
-		<tr>
-			<td>ID</td>
-			<td>Name</td>
-			<td>Description</td>
-			<td>Target Date</td>
-			<td>Is Done</td>
-		</tr>
-		<c:forEach items="${todos}" var="item">
-			<tr>
-				<td><c:out value="${item.getId()}"></c:out></td>
-				<td><c:out value="${item.getUser()}"></c:out></td>
-				<td><c:out value="${item.getDesc()}"></c:out></td>
-				<td><c:out value="${item.getTargetDate()}"></c:out></td>
-				<td><c:out value="${item.getIsDone()}"></c:out></td>
-			</tr>
-		</c:forEach>
-	</table>
+	<div>
+		<div>
+			<table class="table">
+				<tr>
+					<td>ID</td>
+					<td>Name</td>
+					<td>Description</td>
+					<td>Target Date</td>
+					<td>Is Done</td>
+					<td>Add/Edit/Delete</td>
 
-</body>
+				</tr>
+				<c:forEach items="${todos}" var="item">
+					<tr>
+						<td><c:out value="${item.getId()}"></c:out></td>
+						<td><c:out value="${item.getUser()}"></c:out></td>
+						<td><c:out value="${item.getDesc()}"></c:out></td>
+						<td><c:out value="${item.getTargetDate()}"></c:out></td>
+						<td><c:out value="${item.getIsDone()}"></c:out></td>
+						<td><a href="/addtodo">Add </a><a href="/edit-todo">Edit
+						</a><a href="/deletetodo">Delete</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<!-- </div>
+		<a href="addtodo" class="btn btn-primary">Add Todo</a>
+	</div>
+ --></body>
 </html>
