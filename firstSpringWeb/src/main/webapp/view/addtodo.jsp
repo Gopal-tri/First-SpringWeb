@@ -1,10 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java\" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -12,47 +18,62 @@
 
 	<div>
 		<jsp:include page="/include/headscript.jsp"></jsp:include>
-
 		<jsp:include page="/include/menu.jsp"></jsp:include>
 	</div>
 
-	<div>
-		<div class="container">
-			<form action="/addtodo" method="post">
-				<div class="form-group row">
-					<label for="user" class="col-sm-2 col-form-label">Name</label>
-					<div class="col-sm-3">
-						<input type="text" class=" form-control" id="user"
-							placeholder="User Name">
-					</div>
+	<div class="row">
+
+		<form:form action="add-todo" modelAttribute="todo">
+			<div class="row">
+				<div class="col col-md col-md3">
+					<label>Name : </label>
 				</div>
-				<div class="form-group row">
-					<label for="desc" class="col-sm-2 col-form-label ">Description</label>
-					<div class="col-sm-3">
-						<input type="text" class="form-control" id="desc"
-							placeholder="Todo Description">
-					</div>
+				<div class="col col-md col-md3">
+					<form:input path="user" />
 				</div>
-				<div class="form-group row">
-					<label for="tdate" class="col-sm-2 col-form-label">Target
-						Date</label>
-					<div class="col-sm-3">
-						<input type="date" class="form-control" id="tdate"
-							placeholder="tdate">
-					</div>
+			</div>
+
+			<div class="row">
+				<div class="col col-md col-md3">
+					<label>Description : </label>
 				</div>
-				<div class="form-group row">
-					<label for="isdone" class="col-sm-2 col-form-label">Is Done</label>
-					<div class="col-sm-3">
-						<input type="text" class="form-control" id="isdone"
-							placeholder="Todo Status">
-					</div>
-					<div class="col-sm-3">
-						<input type="submit" class="form-control">
-					</div>
+				<div class="col col-md col-md3">
+					<form:input path="desc" />
 				</div>
-			</form>
-		</div>
+			</div>
+
+			<div class="row">
+				<div class="col col-md col-md3">
+					<label>Target Date : </label>
+				</div>
+				<div class="col col-md col-md3">
+					<form:input id="expenseDate" type="text" path="targetDate"
+						class="date-picker" />
+					<script type="text/javascript">
+						$(document).ready(function() {
+							$(function() {
+								$("#expenseDate").datepicker();
+							});
+						});
+					</script>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-md col-md3">
+					<label>Is Achieved : </label>
+				</div>
+				<div class="col col-md col-md3">
+					<form:checkbox path="isDone" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col col-md col-md3">
+					<input type="submit" value="Add Todo" />
+				</div>
+			</div>
+
+		</form:form>
 	</div>
 
 </body>
